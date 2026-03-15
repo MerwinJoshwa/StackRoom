@@ -1,0 +1,15 @@
+{
+  "name": "stackroom",
+  "version": "1.0.0",
+  "description": "Real-time collaborative full-stack IDE",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && node index.js",
+    "client": "cd client && npx vite --port 3000",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

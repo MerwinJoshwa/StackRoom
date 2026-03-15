@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables — NEVER push your API key
+.env
+**/.env
+.env.local
+.env.production
+
+# Build output
+client/dist/
+server/public/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/

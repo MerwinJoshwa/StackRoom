@@ -1,0 +1,41 @@
+.explorer {
+  grid-row:1/3;background:var(--surface);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.header {
+  padding:10px 12px 8px;font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:1.5px;color:var(--muted);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.addBtn { background:none;border:none;color:var(--muted);font-size:16px;padding:0 2px;line-height:1;transition:color .15s; }
+.addBtn:hover { color:var(--accent); }
+
+.newFileRow { display:flex;gap:4px;padding:6px 8px;border-bottom:1px solid var(--border);flex-shrink:0; }
+.newFileInput { flex:1;background:var(--panel);border:1px solid var(--accent);border-radius:4px;padding:4px 8px;color:var(--text);font-size:11px;outline:none; }
+.newFileBtn { background:var(--accent);border:none;border-radius:4px;color:var(--bg);padding:4px 8px;font-weight:700;font-size:12px; }
+
+.tree { flex:1;overflow-y:auto;padding:6px 0; }
+.section { margin-bottom:4px; }
+.folder { padding:5px 10px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-family:'JetBrains Mono',monospace; }
+
+.file {
+  display:flex;align-items:center;gap:6px;padding:4px 10px 4px 20px;font-size:11px;
+  font-family:'JetBrains Mono',monospace;color:var(--muted);cursor:pointer;
+  border-left:2px solid transparent;margin-left:8px;transition:all .15s;
+  position:relative;
+}
+.file:hover { color:var(--text);background:var(--faint); }
+.fileActive { color:var(--accent)!important;border-left-color:var(--accent)!important;background:rgba(0,229,255,.05)!important; }
+.fileName { flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+
+.delBtn {
+  background:none;border:none;color:transparent;font-size:13px;line-height:1;
+  padding:0 4px;transition:color .15s;flex-shrink:0;cursor:pointer;
+  opacity:0;pointer-events:none;
+}
+.file:hover .delBtn {
+  opacity:1;pointer-events:auto;
+}
+.file:hover .delBtn { color:var(--muted); }
+.delBtn:hover { color:#ef4444!important; }
+.file:hover .delBtn { color:#94a3b8; cursor:pointer; }

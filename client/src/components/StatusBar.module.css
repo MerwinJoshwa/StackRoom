@@ -1,0 +1,8 @@
+.bar {
+  height:22px;background:var(--accent2);display:flex;align-items:center;
+  padding:0 14px;gap:14px;flex-shrink:0;
+}
+.item { font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:4px; }
+.item strong { color:rgba(255,255,255,.95); }
+.dot { width:6px;height:6px;border-radius:50%;display:inline-block; }
+.spacer { flex:1; }

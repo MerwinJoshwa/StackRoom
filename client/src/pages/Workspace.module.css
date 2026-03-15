@@ -1,0 +1,185 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  overflow: hidden;
+  min-height: 0;
+  /* Must have an explicit height for grid children to fill properly */
+  height: 0;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+  height: 100%;
+}
+
+.teamSection {
+  border-top: 1px solid var(--border);
+  padding: 8px 0 4px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  max-height: 240px;
+}
+.teamHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2px 12px 6px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted);
+}
+.onlinePill {
+  background: rgba(16,185,129,.15); color: var(--accent3);
+  border-radius: 20px; padding: 1px 7px; font-size: 9px; letter-spacing: .5px;
+}
+.teamRow {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 10px; transition: background .12s;
+}
+.teamRow:hover { background: var(--faint); }
+.teamAvatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.teamMeta { flex: 1; min-width: 0; }
+.teamName { font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.teamRole { font-size: 9px; font-family: 'JetBrains Mono', monospace; text-transform: capitalize; }
+.statusRow { display: flex; align-items: center; gap: 4px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dotOn  { background: var(--accent3); box-shadow: 0 0 5px var(--accent3); }
+.dotOff { background: var(--border-bright); }
+.watchBtn {
+  background: none; border: 1px solid var(--border-bright); border-radius: 3px;
+  color: var(--muted); font-size: 11px; padding: 1px 4px; line-height: 1; transition: all .15s;
+}
+.watchBtn:hover { color: var(--accent); border-color: var(--accent); }
+.watchBtnOn { color: var(--warn) !important; border-color: var(--warn) !important; }
+
+/* ── CENTRE COLUMN ── */
+.centre {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Editor area takes all remaining space above the bottom panel */
+.editorArea {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  height: 0;         /* forces flex children (roleWrapper) to measure properly */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Role wrapper fills editorArea */
+.roleWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.roleLabel {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px; font-weight: 700; letter-spacing: .5px;
+  color: var(--rc, var(--text));
+  flex-shrink: 0;
+}
+.roleIcon { font-size: 14px; }
+.readonlyTag {
+  margin-left: auto; font-size: 9px; padding: 2px 7px; border-radius: 20px;
+  background: rgba(100,116,139,.15); color: var(--muted); border: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .5px;
+}
+
+/* Dual editor split for fullstack */
+.dualEditors {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+  height: 0;
+}
+.splitLine { width: 1px; background: var(--border); flex-shrink: 0; }
+
+/* Bottom panel */
+.bottomPanel {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+}
+.bottomTabs {
+  display: flex; border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+.btab {
+  padding: 7px 16px; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); background: none; border: none;
+  border-bottom: 2px solid transparent; transition: all .15s;
+  font-family: 'JetBrains Mono', monospace;
+}
+.btab:hover { color: var(--text); }
+.btabOn { color: var(--accent) !important; border-bottom-color: var(--accent) !important; }
+.bottomContent { flex: 1; overflow: hidden; min-height: 0; display: flex; flex-direction: column; }
+
+/* ── RIGHT: CHAT ── */
+.rightCol {
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  overflow: hidden;
+  height: 100%;
+}
+.rightTabBar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.rightTab {
+  flex: 1;
+  padding: 9px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all .15s;
+  letter-spacing: .3px;
+}
+.rightTab:hover { color: var(--text); }
+.rightTabActive { color: var(--accent) !important; border-bottom-color: var(--accent) !important; }
+
+.chatHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.typingTag {
+  font-size: 9px; color: var(--warn);
+  font-family: 'JetBrains Mono', monospace; letter-spacing: .5px;
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }

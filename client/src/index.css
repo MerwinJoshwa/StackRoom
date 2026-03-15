@@ -1,0 +1,39 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --panel: #13161d;
+  --border: #1e2330;
+  --border-bright: #2a3045;
+  --accent: #00e5ff;
+  --accent2: #7c3aed;
+  --accent3: #10b981;
+  --warn: #f59e0b;
+  --red: #ef4444;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --faint: #1a1e2b;
+
+  /* Role colours */
+  --fe-color: #61dafb;
+  --be-color: #10b981;
+  --fs-color: #f59e0b;
+  --vi-color: #a78bfa;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+button { cursor: pointer; font-family: 'Syne', sans-serif; }
+input, select, textarea { font-family: 'JetBrains Mono', monospace; }

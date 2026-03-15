@@ -1,0 +1,51 @@
+.landing {
+  height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.gridBg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,229,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,255,.04) 1px,transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%,black 40%,transparent 100%);
+}
+.orb1,.orb2,.orb3 { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
+.orb1 { width:500px;height:500px;background:rgba(0,229,255,.06);top:-100px;left:-100px;animation:d1 12s ease-in-out infinite; }
+.orb2 { width:400px;height:400px;background:rgba(124,58,237,.08);bottom:-80px;right:-80px;animation:d2 10s ease-in-out infinite; }
+.orb3 { width:300px;height:300px;background:rgba(16,185,129,.06);top:50%;left:50%;transform:translate(-50%,-50%);animation:d3 14s ease-in-out infinite; }
+@keyframes d1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+@keyframes d2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+@keyframes d3 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-48%,-52%)} }
+
+.content { position:relative;z-index:2;text-align:center;max-width:680px;padding:0 24px; }
+.logoMark {
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  background:linear-gradient(135deg,#00e5ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.title { font-size:clamp(42px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px; }
+.title span { background:linear-gradient(135deg,#00e5ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+.sub { font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:48px;font-family:'JetBrains Mono',monospace;font-weight:300; }
+
+.ctaGroup { display:flex;gap:12px;justify-content:center;flex-wrap:wrap; }
+.btnPrimary { padding:12px 28px;border-radius:6px;font-weight:700;font-size:14px;border:none;background:var(--accent);color:var(--bg);box-shadow:0 0 24px rgba(0,229,255,.3);transition:all .2s;letter-spacing:.5px; }
+.btnPrimary:hover:not(:disabled) { background:#33ecff;box-shadow:0 0 32px rgba(0,229,255,.5);transform:translateY(-1px); }
+.btnPrimary:disabled { opacity:.6;cursor:not-allowed; }
+.btnSecondary { padding:12px 28px;border-radius:6px;font-weight:700;font-size:14px;background:transparent;color:var(--text);border:1px solid var(--border-bright);transition:all .2s; }
+.btnSecondary:hover { border-color:var(--accent);color:var(--accent);transform:translateY(-1px); }
+
+.pills { display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:40px; }
+.pill { font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid var(--border-bright);color:var(--muted); }
+
+.overlay { position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center; }
+.modal { background:var(--surface);border:1px solid var(--border-bright);border-radius:12px;padding:32px;width:420px;max-width:90vw;position:relative;box-shadow:0 0 60px rgba(0,229,255,.1),0 24px 80px rgba(0,0,0,.6);animation:mIn .2s ease-out; }
+@keyframes mIn { from{transform:scale(.95);opacity:0} to{transform:scale(1);opacity:1} }
+.modalClose { position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:18px;padding:4px 8px;border-radius:4px;transition:all .15s; }
+.modalClose:hover { color:var(--text);background:var(--faint); }
+.modalTitle { font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px; }
+.modalSub { font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:24px; }
+.label { display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;margin-top:14px; }
+.input { width:100%;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:border-color .2s; }
+.input:focus { border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,255,.08); }
+select.input option { background:var(--panel); }
+.error { color:var(--red);font-size:12px;margin-top:10px;font-family:'JetBrains Mono',monospace; }
