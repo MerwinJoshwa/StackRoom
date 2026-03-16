@@ -24,14 +24,22 @@ Respond with ONLY a valid JSON object in this exact format — no markdown, no b
   "action": "edit",
   "files": [
     {
-      "path": "frontend/App.jsx",
+      "path": "frontend/index.html",
       "content": "...complete new file content..."
     }
   ],
   "summary": "one sentence describing what you changed"
 }
 
-Rules:
+CRITICAL file path rules — you MUST follow these exactly:
+- ALL frontend files (HTML, CSS, JS, JSX, images) MUST use path prefix: frontend/
+  Examples: frontend/index.html, frontend/style.css, frontend/app.js, frontend/App.jsx
+- ALL backend files (server, routes, API) MUST use path prefix: backend/
+  Examples: backend/server.js, backend/routes.js, backend/app.py
+- NEVER use bare filenames without a folder prefix
+- NEVER use src/, public/, or any other prefix — only frontend/ or backend/
+
+Other rules:
 - Return ONLY the JSON object, nothing else
 - Always return the COMPLETE file content for each file you edit
 - You can edit multiple files in one response
@@ -67,7 +75,7 @@ function callGeminiRest(apiKey, userText, codebaseContext) {
       });
     });
     req.on('error', reject);
-    req.setTimeout(30000, () => { req.destroy(); reject(new Error('Gemini request timed out')); });
+    req.setTimeout(60000, () => { req.destroy(); reject(new Error('Gemini request timed out')); });
     req.write(body);
     req.end();
   });
@@ -215,10 +223,25 @@ function processGeminiResponse(rawText, roomCode, room, io, clientWs) {
       for (const fileEdit of parsed.files) {
         if (!fileEdit.path || typeof fileEdit.content !== 'string') continue;
         const normalized = fileEdit.path.replace(/\\/g, '/');
-        const resolvedPath =
+        let resolvedPath =
           basenameMap[normalized.toLowerCase()] ||
           basenameMap[normalized.split('/').pop().toLowerCase()] ||
           normalized;
+
+        // If Gemini returned a bare filename with no folder prefix,
+        // assign it to the correct folder based on file type
+        if (!resolvedPath.includes('/')) {
+          const ext = resolvedPath.split('.').pop().toLowerCase();
+          const frontendExts = ['html', 'css', 'jsx', 'tsx', 'js', 'ts', 'svg', 'png'];
+          const backendExts  = ['py', 'java', 'rb', 'go', 'php'];
+          if (frontendExts.includes(ext)) {
+            resolvedPath = 'frontend/' + resolvedPath;
+          } else if (backendExts.includes(ext)) {
+            resolvedPath = 'backend/' + resolvedPath;
+          } else if (ext === 'js' || ext === 'ts') {
+            resolvedPath = 'backend/' + resolvedPath;
+          }
+        }
 
         const ext = resolvedPath.split('.').pop().toLowerCase();
         room.files[resolvedPath] = {

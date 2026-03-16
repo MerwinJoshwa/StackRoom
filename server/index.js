@@ -526,7 +526,7 @@ Rules:
         });
       });
       apiReq.on('error', reject);
-      apiReq.setTimeout(30000, () => { apiReq.destroy(); reject(new Error('Gemini timeout')); });
+      apiReq.setTimeout(60000, () => { apiReq.destroy(); reject(new Error('Gemini timeout')); });
       apiReq.write(body);
       apiReq.end();
     });
