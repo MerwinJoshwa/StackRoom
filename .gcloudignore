@@ -1,0 +1,18 @@
+# Ignore node_modules — Cloud Build installs them during build
+node_modules/
+**/node_modules/
+
+# Ignore local env file — set via --set-env-vars in deploy command
+.env
+**/.env
+
+# Ignore local build output
+client/dist/
+server/public/
+
+# Ignore git history
+.git/
+
+# Ignore logs
+*.log
+npm-debug.log*
